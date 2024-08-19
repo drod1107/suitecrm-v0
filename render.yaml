@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: suitecrm
+    env: docker
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: SUITECRM_DATABASE_HOST
+        fromDatabase:
+          name: suitecrm-db
+          property: host
+      - key: SUITECRM_DATABASE_PORT_NUMBER
+        fromDatabase:
+          name: suitecrm-db
+          property: port
+      - key: SUITECRM_DATABASE_USER
+        fromDatabase:
+          name: suitecrm-db
+          property: user
+      - key: SUITECRM_DATABASE_PASSWORD
+        fromDatabase:
+          name: suitecrm-db
+          property: password
+      - key: SUITECRM_DATABASE_NAME
+        fromDatabase:
+          name: suitecrm-db
+          property: database
+
+databases:
+  - name: suitecrm-db
+    databaseName: bitnami_suitecrm
+    user: bn_suitecrm
